@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "lib": [
+        "DOM",
+        "ES2015"
+      ],
+      "outDir": "build", //output directory
+    //   "rootDir": "src"  //root directory of input files
+    }
+  }
