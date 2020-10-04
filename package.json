@@ -1,0 +1,13 @@
+{
+  "name": "ps5_scraper",
+  "version": "1.0.0",
+  "description": "To compile code into build tsc",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "author": "Shan Islam",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {}
+}
