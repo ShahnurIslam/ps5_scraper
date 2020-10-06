@@ -12,8 +12,8 @@ export class Bot {
 
     public async start(){
         this.logger.info("starting bot scraper")
-        console.log(this.am.getRetailerName())
-        console.log(await this.am.crawlSite('B08H95Y452'))
+        this.logger.info(`Starting Crawler on site ${this.am.getRetailerName()}`)
+        console.log(await this.am.getStock())
         
     }
 
