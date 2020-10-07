@@ -9,7 +9,7 @@ export class AmazonUK{
         return 'amazon.co.uk';
       }
 
-    getUrl(item_code):string{
+    getUrl(item_code:string):string{
         return "https://www.amazon.co.uk/dp/".concat(item_code,'/')
     }
 
