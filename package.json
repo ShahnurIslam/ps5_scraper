@@ -9,5 +9,9 @@
   "author": "Shan Islam",
   "license": "ISC",
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.20.0",
+    "cheerio": "^1.0.0-rc.3"
+  }
 }
