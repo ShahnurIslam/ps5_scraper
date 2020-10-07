@@ -1,4 +1,4 @@
-import {} from "../Logger"
+import {Logger} from "../Logger"
 import {Product} from "../Model/Product"
 const axios = require('axios');
 const cheerio = require('cheerio');
@@ -17,7 +17,7 @@ export class AmazonUK{
         return stock.startsWith('Available from')
       }
     
-    async crawlSite(item_id:string){
+    async crawlSite(item_id:string,logger:Logger){
         const prod_url  = this.getUrl(item_id);
         let stock_list = '';
         try {
@@ -26,13 +26,14 @@ export class AmazonUK{
             const $ = cheerio.load(html)
             stock_list += ($('#availability span').first().text().trim())
         } catch(error){
-            console.log("mistake");
+            logger.error(error.message);
+            
         };
         return stock_list
     }
 
-    public async getStock(){
-        const stock = await this.crawlSite('B08H95Y452')
+    public async getStock(logger:Logger){
+        const stock = await this.crawlSite('B08H95Y452',logger)
         const in_stock = this.productIsValid(stock)
         return in_stock
     }

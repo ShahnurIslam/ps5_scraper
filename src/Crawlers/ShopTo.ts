@@ -1,4 +1,5 @@
 import {Crawler} from "./Crawler"
+import {Logger} from "../Logger"
 
 const axios = require('axios');
 const cheerio = require('cheerio');
@@ -19,7 +20,7 @@ export class ShopTo extends Crawler{
         return(str.substr(0,lg))
     }
 
-    private async crawlSite(){
+    private async crawlSite(logger:Logger){
         const prod_url  = this.getUrl();
         let stock_list = '';
         try {
@@ -28,13 +29,13 @@ export class ShopTo extends Crawler{
             const $ = cheerio.load(html)
             stock_list += this.split_text($('.inventory.orderbox_inventory.not_available p','#itemcard_order_button_form_std').text().trim())
         } catch(error){
-            console.log("mistake");
+            logger.error(error.message);
         };
         return stock_list
     }
 
-    public async getStock(){
-        const stock = await this.crawlSite()
+    public async getStock(logger:Logger){
+        const stock = await this.crawlSite(logger)
         const inStock = this.productIsValid(stock)
         return inStock
     }
