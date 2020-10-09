@@ -25,18 +25,11 @@ export class Bot {
     public async start(){
         // let stock = []
         var stock_d = {}
-        // this.logger.info("Starting bot scraper")
-        // this.scrape_site(this.am)
-        // this.scrape_site(this.shopto)
-        // this.scrape_site(this.game)
-        this.logger.info(`Starting Crawler on site ${this.am.getRetailerName()}`)
-        stock_d[this.am.getRetailerName()] = await this.am.getStock(this.logger)
-        this.logger.info(`Starting Crawler on site ${this.shopto.getRetailerName()}`)
-        stock_d[this.shopto.getRetailerName()] = await this.shopto.getStock(this.logger)
-        this.logger.info(`Starting Crawler on site ${this.game.getRetailerName()}`)
-        stock_d[this.game.getRetailerName()] = await this.game.getStock(this.logger)
-
-        console.log(stock_d)
+        this.logger.info("Starting bot scraper")
+        await this.scrape_site(this.am)
+        await this.scrape_site(this.shopto)
+        await this.scrape_site(this.game)
+        console.log(this.stock_dict)
     }
 
 }

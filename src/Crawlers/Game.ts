@@ -24,10 +24,11 @@ export class Game extends Crawler{
             const html = response.data
             const $ = cheerio.load(html)
             stock_list += $('.section.buyingOptions.stacked').text().trim() 
-            console.log(stock_list)
+            
         } catch(error){
             logger.error(error.message)
         };
+        logger.info(`Retailer ${this.getRetailerName()} stock text is returning: ${stock_list}`);
         return stock_list
     }
     public async getStock(logger:Logger){

@@ -28,7 +28,7 @@ export class AmazonUK{
             logger.error(error.message);
             
         };
-        console.log(stock_list)
+        logger.info(`Retailer ${this.getRetailerName()} stock text is returning: ${stock_list}`)
         return stock_list
     }
 
