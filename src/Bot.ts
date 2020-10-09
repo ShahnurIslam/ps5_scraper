@@ -5,15 +5,9 @@ import { Game } from "./Crawlers/Game"
 import { Crawler } from './Crawlers/Crawler'
 
 export class Bot {
-    am: AmazonUK
-    shopto: ShopTo
-    game: Game
     stock_dict: any
 
     constructor(private readonly logger: Logger){
-        this.am = new AmazonUK
-        this.shopto = new ShopTo
-        this.game = new Game
         this.stock_dict = {}
     }
 
@@ -22,14 +16,24 @@ export class Bot {
         this.stock_dict[cr.getRetailerName()] = await cr.getStock(this.logger)
     }
 
+    check_stock(st_dict){
+        var filtered = Object.keys(st_dict).reduce(function (filtered, key) {
+            if (st_dict[key] === true) filtered[key] = st_dict[key];
+            return filtered;
+        }, {});
+        const len = Object.keys(filtered).length
+        return len
+
+    }
+
     public async start(){
-        // let stock = []
-        var stock_d = {}
         this.logger.info("Starting bot scraper")
-        await this.scrape_site(this.am)
-        await this.scrape_site(this.shopto)
-        await this.scrape_site(this.game)
+        await this.scrape_site(new AmazonUK)
+        await this.scrape_site(new ShopTo)
+        await this.scrape_site(new Game)
+        // this.stock_dict['test'] = true
         console.log(this.stock_dict)
+        console.log(this.check_stock(this.stock_dict))
     }
 
 }
