@@ -1,21 +1,21 @@
-import {Logger} from "../Logger"
+import {Crawler} from "./Crawler"
+import {Logger,LogLevel} from "../Logger"
+
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-export class AmazonUK{
 
+export class Game extends Crawler{
     getRetailerName(): string {
-        return 'amazon.co.uk';
-      }
-
-    getUrl():string{
-        return "https://www.amazon.co.uk/dp/B08H95Y452/"
+        return "Game"
+    }
+    getUrl(): string {
+        return "https://www.game.co.uk/en/playstation-5-console-2826338"
+    }
+    productIsValid(stock: string): Boolean {
+        return !stock.startsWith("Sorry, this product is currently out of stock, but might be available in store")
     }
 
-    productIsValid(stock:string):Boolean{
-        return stock.startsWith('Available from')
-      }
-    
     async crawlSite(logger:Logger){
         const prod_url  = this.getUrl();
         let stock_list = '';
@@ -23,21 +23,16 @@ export class AmazonUK{
             const response = await axios.get(prod_url)
             const html = response.data
             const $ = cheerio.load(html)
-            stock_list += ($('#availability span').first().text().trim())
+            stock_list += $('.section.buyingOptions.stacked').text().trim() 
+            console.log(stock_list)
         } catch(error){
-            logger.error(error.message);
-            
+            logger.error(error.message)
         };
-        console.log(stock_list)
         return stock_list
     }
-
     public async getStock(logger:Logger){
         const stock = await this.crawlSite(logger)
         const in_stock = this.productIsValid(stock)
         return in_stock
     }
-    }
-
-
-
+}

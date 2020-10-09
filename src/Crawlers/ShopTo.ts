@@ -20,7 +20,7 @@ export class ShopTo extends Crawler{
         return(str.substr(0,lg))
     }
 
-    private async crawlSite(logger:Logger){
+    async crawlSite(logger:Logger){
         const prod_url  = this.getUrl();
         let stock_list = '';
         try {
@@ -31,6 +31,7 @@ export class ShopTo extends Crawler{
         } catch(error){
             logger.error(error.message);
         };
+        console.log(stock_list)
         return stock_list
     }
 
