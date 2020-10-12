@@ -3,12 +3,15 @@ import { AmazonUK } from "./Crawlers/AmazonUk"
 import { ShopTo } from "./Crawlers/ShopTo"
 import { Game } from "./Crawlers/Game"
 import { Crawler } from './Crawlers/Crawler'
+import { Email } from './Notifications/Mailer'
 
 export class Bot {
     stock_dict: any
+    email: Email
 
     constructor(private readonly logger: Logger){
         this.stock_dict = {}
+        this.email = new Email
     }
 
     private async scrape_site(cr:Crawler){
@@ -23,7 +26,19 @@ export class Bot {
         }, {});
         const len = Object.keys(filtered).length
         return len
+    }
 
+    email_notification(st_dict){
+        if(this.check_stock(st_dict) > 0){
+            var filtered = Object.keys(st_dict).reduce(function (filtered, key) {
+                if (st_dict[key] === true) filtered[key] = st_dict[key];
+                return filtered;
+            }, {});
+            console.log(filtered)
+            this.email.main(String(filtered))
+        } else{
+            this.logger.info("No stock anywhere")
+        }
     }
 
     public async start(){
@@ -31,9 +46,12 @@ export class Bot {
         await this.scrape_site(new AmazonUK)
         await this.scrape_site(new ShopTo)
         await this.scrape_site(new Game)
-        // this.stock_dict['test'] = true
+        this.stock_dict['test'] = true
         console.log(this.stock_dict)
-        console.log(this.check_stock(this.stock_dict))
+        this.email_notification(this.stock_dict)
+
+        // this.email.main("testing")
+        
     }
 
 }
