@@ -30,12 +30,12 @@ export class Bot {
 
     email_notification(st_dict){
         if(this.check_stock(st_dict) > 0){
-            var filtered = Object.keys(st_dict).reduce(function (filtered, key) {
+            var filtered: { [characterName: string]: boolean} = Object.keys(st_dict).reduce(function (filtered, key) {
                 if (st_dict[key] === true) filtered[key] = st_dict[key];
                 return filtered;
             }, {});
             console.log(filtered)
-            this.email.main(String(filtered))
+            this.email.main("Testing")
         } else{
             this.logger.info("No stock anywhere")
         }
@@ -46,7 +46,7 @@ export class Bot {
         await this.scrape_site(new AmazonUK)
         await this.scrape_site(new ShopTo)
         await this.scrape_site(new Game)
-        this.stock_dict['test'] = true
+        // this.stock_dict['test'] = true
         console.log(this.stock_dict)
         this.email_notification(this.stock_dict)
 
