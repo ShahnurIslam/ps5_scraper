@@ -31,7 +31,7 @@ export class ShopTo extends Crawler{
         } catch(error){
             logger.error(error.message);
         };
-        console.log(stock_list)
+        logger.info(`Retailer ${this.getRetailerName()} stock text is returning: ${stock_list}`);
         return stock_list
     }
 

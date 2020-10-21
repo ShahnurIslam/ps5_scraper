@@ -3,18 +3,15 @@ import { AmazonUK } from "./Crawlers/AmazonUk"
 import { ShopTo } from "./Crawlers/ShopTo"
 import { Game } from "./Crawlers/Game"
 import { Crawler } from './Crawlers/Crawler'
+import { Email } from './Notifications/Mailer'
 
 export class Bot {
-    am: AmazonUK
-    shopto: ShopTo
-    game: Game
     stock_dict: any
+    email: Email
 
     constructor(private readonly logger: Logger){
-        this.am = new AmazonUK
-        this.shopto = new ShopTo
-        this.game = new Game
         this.stock_dict = {}
+        this.email = new Email
     }
 
     private async scrape_site(cr:Crawler){
@@ -22,21 +19,39 @@ export class Bot {
         this.stock_dict[cr.getRetailerName()] = await cr.getStock(this.logger)
     }
 
-    public async start(){
-        // let stock = []
-        var stock_d = {}
-        // this.logger.info("Starting bot scraper")
-        // this.scrape_site(this.am)
-        // this.scrape_site(this.shopto)
-        // this.scrape_site(this.game)
-        this.logger.info(`Starting Crawler on site ${this.am.getRetailerName()}`)
-        stock_d[this.am.getRetailerName()] = await this.am.getStock(this.logger)
-        this.logger.info(`Starting Crawler on site ${this.shopto.getRetailerName()}`)
-        stock_d[this.shopto.getRetailerName()] = await this.shopto.getStock(this.logger)
-        this.logger.info(`Starting Crawler on site ${this.game.getRetailerName()}`)
-        stock_d[this.game.getRetailerName()] = await this.game.getStock(this.logger)
+    check_stock(st_dict){
+        var filtered = Object.keys(st_dict).reduce(function (filtered, key) {
+            if (st_dict[key] === true) filtered[key] = st_dict[key];
+            return filtered;
+        }, {});
+        const len = Object.keys(filtered).length
+        return len
+    }
 
-        console.log(stock_d)
+    email_notification(st_dict){
+        if(this.check_stock(st_dict) > 0){
+            var filtered: { [characterName: string]: boolean} = Object.keys(st_dict).reduce(function (filtered, key) {
+                if (st_dict[key] === true) filtered[key] = st_dict[key];
+                return filtered;
+            }, {});
+            console.log(filtered)
+            this.email.main("Testing")
+        } else{
+            this.logger.info("No stock anywhere")
+        }
+    }
+
+    public async start(){
+        this.logger.info("Starting bot scraper")
+        await this.scrape_site(new AmazonUK)
+        await this.scrape_site(new ShopTo)
+        await this.scrape_site(new Game)
+        // this.stock_dict['test'] = true
+        console.log(this.stock_dict)
+        this.email_notification(this.stock_dict)
+
+        // this.email.main("testing")
+        
     }
 
 }
