@@ -49,7 +49,6 @@ export class Bot {
         // this.stock_dict['test'] = true
         console.log(this.stock_dict)
         this.email_notification(this.stock_dict)
-
         // this.email.main("testing")
         
     }
