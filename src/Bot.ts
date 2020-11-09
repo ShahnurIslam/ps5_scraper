@@ -8,15 +8,31 @@ import { Email } from './Notifications/Mailer'
 export class Bot {
     stock_dict: any
     email: Email
+    msg: string
 
     constructor(private readonly logger: Logger){
         this.stock_dict = {}
         this.email = new Email
+        this.msg = ""
     }
 
     private async scrape_site(cr:Crawler){
         this.logger.info(`Starting Crawler on site ${cr.getRetailerName()}`)
         this.stock_dict[cr.getRetailerName()] = await cr.getStock(this.logger)
+        // this.msg += '\n' + cr.getRetailerName() + ' has stock at url: ' + cr.getUrl()
+        if (this.stock_dict[cr.getRetailerName()] === true){
+            if (this.msg == ""){
+                this.msg = cr.getRetailerName()  + ' has stock <a href="' + cr.getUrl() + '">here</a><br/>'
+            } else {
+                this.msg +=  cr.getRetailerName()  + ' has stock <a href="' + cr.getUrl() + '">here</a><br/>'
+            }
+            
+        }
+    }
+
+    private async scrape_site2(cr:Crawler){
+        this.logger.info(`Starting Crawler on site ${cr.getRetailerName()}`)
+        this.stock_dict[cr.getRetailerName()] = cr
     }
 
     check_stock(st_dict){
@@ -34,8 +50,9 @@ export class Bot {
                 if (st_dict[key] === true) filtered[key] = st_dict[key];
                 return filtered;
             }, {});
-            console.log(filtered)
-            this.email.main("Testing")
+
+            this.email.main(this.msg)
+
         } else{
             this.logger.info("No stock anywhere")
         }
@@ -46,8 +63,10 @@ export class Bot {
         await this.scrape_site(new AmazonUK)
         await this.scrape_site(new ShopTo)
         await this.scrape_site(new Game)
-        // this.stock_dict['test'] = true
+        this.stock_dict['test'] = true
         console.log(this.stock_dict)
+        console.log(this.msg)
+        // console.log(this.check_stock(this.stock_dict))
         this.email_notification(this.stock_dict)
         // this.email.main("testing")
         
