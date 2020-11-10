@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 export class AmazonUK{
 
     getRetailerName(): string {
-        return 'amazon.co.uk';
+        return 'Amazon';
       }
 
     getUrl():string{
@@ -20,15 +20,16 @@ export class AmazonUK{
         const prod_url  = this.getUrl();
         let stock_list = '';
         try {
-            const response = await axios.get(prod_url)
+            const response = await axios.get(prod_url, {headers:{'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0'}})
             const html = response.data
             const $ = cheerio.load(html)
             stock_list += ($('#availability span').first().text().trim())
+            logger.info(`Retailer ${this.getRetailerName()} stock text is returning: ${stock_list}`)
         } catch(error){
             logger.error(error.message);
             
         };
-        logger.info(`Retailer ${this.getRetailerName()} stock text is returning: ${stock_list}`)
+        
         return stock_list
     }
 

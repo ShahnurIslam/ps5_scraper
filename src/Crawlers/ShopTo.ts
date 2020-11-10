@@ -24,7 +24,7 @@ export class ShopTo extends Crawler{
         const prod_url  = this.getUrl();
         let stock_list = '';
         try {
-            const response = await axios.get(prod_url)
+            const response = await axios.get(prod_url,{headers:{'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0'}})
             const html = response.data
             const $ = cheerio.load(html)
             stock_list += this.split_text($('.inventory.orderbox_inventory.not_available p','#itemcard_order_button_form_std').text().trim())
