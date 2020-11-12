@@ -1,0 +1,22 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "ps5-scraper"
+  namespace: "default"
+  labels:
+    app: "ps5-scraper"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "ps5-scraper"
+  template:
+    metadata:
+      labels:
+        app: "ps5-scraper"
+    spec:
+      containers:
+      - name: "ps5-scraper-sha256-1"
+        image: "eu.gcr.io/e-resolver-294514/ps5_scraper@sha256:5057c299a63ba09f2395a6db3b401f92bd0ab21bae0da790ffc6a23e2227d4cf"
+
