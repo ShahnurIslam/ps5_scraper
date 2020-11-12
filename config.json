@@ -10,7 +10,9 @@
         "port" : 465
     },
 
-    "Email_List":{
-        
+    "Email_Details":{
+        "Recipients": [ "shahnurislam@hotmail.co.uk", "shahnurislam.si@gmail.com"],
+        "Subject": "PS5 Stock Notification",
+        "Sender": "Shan"
     }
 }

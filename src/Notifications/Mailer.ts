@@ -14,10 +14,12 @@ export class Email{
     password:string
     host:string
     port: number
+    Email_Details:Object
 
     constructor(logger:Logger){
         this.load_env_yaml(logger)
         this.load_smtp_settings(logger)
+        this.load_email_details()
         this.email_add = this.env['email']
         this.password = this.env['password']
         
@@ -27,6 +29,10 @@ export class Email{
         this.config_json  = require("../../config.json")
         this.host = this.config_json['Outgoing_SMTP']['host']
         this.port = this.config_json['Outgoing_SMTP']['port']
+    }
+
+    load_email_details(){
+        this.Email_Details = this.config_json['Email_Details']
     }
 
     load_env_yaml(logger:Logger){
@@ -62,11 +68,12 @@ export class Email{
         let info = await transporter.sendMail({
             from: process.env.email, // sender address
             to: "shahnurislam@hotmail.co.uk", // list of receivers
-            subject: "PS5 Stock Notification", // Subject line
+            subject: this.Email_Details['Subject'], // Subject line
             //text: "Hello world?", // plain text body
             // "<table style='margin-left: auto; margin-right: auto;'> <tbody> <tr> <td style='text-align: center;'>" 
-            html: "<p style='font-family:Helvetica;font-size:18px;'> Hey! <br><br> I think I may have found some stock: <br/>" + message + '<br/> Thanks as always <br/> Shan <br/> <br/>  </td> </tr> </tbody> </table>' + 
-            "<em> This email is generated from Shans bot </em></p>"  // html body
+            html: "<p style='font-family:Helvetica;font-size:18px;'> Hey! <br><br> I think I may have found some stock: <br/>" + 
+            message + "<br/> Thanks as always <br/> "+ this.Email_Details['Sender'] + " <br/> <br/>  </td> </tr> </tbody> </table>" + 
+            "<em> This email was generated from "+ this.Email_Details['Sender'] + "s bot </em></p>"  // html body
         });
      
         console.log("Message sent: %s", info.messageId);
