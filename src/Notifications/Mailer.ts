@@ -1,15 +1,44 @@
+import {Logger} from "../Logger"
 const nodemailer = require("nodemailer");
 const fs = require('fs');
 const YAML = require('yaml');
 
 // We Load in our credentials 
 
-const file = fs.readFileSync('.env.yaml', 'utf8')
-const env = YAML.parse(file)
-process.env.email = env['email'];
-process.env.password = env['password'];
 
 export class Email{
+
+    env:any
+    config_json: Object
+    email_add:string
+    password:string
+    host:string
+    port: number
+
+    constructor(logger:Logger){
+        this.load_env_yaml(logger)
+        this.load_smtp_settings(logger)
+        this.email_add = this.env['email']
+        this.password = this.env['password']
+        
+    }
+
+    load_smtp_settings(logger:Logger){
+        this.config_json  = require("../../config.json")
+        this.host = this.config_json['Outgoing_SMTP']['host']
+        this.port = this.config_json['Outgoing_SMTP']['port']
+    }
+
+    load_env_yaml(logger:Logger){
+        try {
+            if (fs.existsSync('.env.yaml')){
+                const file = fs.readFileSync('.env.yaml', 'utf8')
+                this.env = YAML.parse(file)
+            }
+        } catch(err){
+            logger.error(err)
+        }
+    }
 
 
     message_gen(stock_dict){
@@ -20,13 +49,12 @@ export class Email{
     async main(message) {
  
         let transporter = nodemailer.createTransport({
-            // pool: true,
-            host: 'mail.privateemail.com', // Gmail Host
-            port: 465, // Port
+            host: this.host, // Email Host
+            port: this.port, // Port
             secure: true, // this is true as port is 465
             auth: {
-                user: process.env.email, 
-                pass: process.env.password , 
+                user: this.email_add, 
+                pass: this.password  , 
             },
         });
      

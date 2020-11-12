@@ -8,5 +8,9 @@
     "Outgoing_SMTP": {
         "host" : "mail.privateemail.com",
         "port" : 465
+    },
+
+    "Email_List":{
+        
     }
 }
