@@ -13,4 +13,4 @@ function bot(){
 
 exports.runBot = bot;
 
-bot()
+// bot()
