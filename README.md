@@ -8,3 +8,8 @@ To build the docker container we use
 
 To run we use 
 `docker run --env-file .env node_test5`
+
+Gcloud deployment
+`tsc`
+`cd build`
+`gcloud functions deploy runBot --trigger-topic scrapr --runtime nodejs10 --env-vars-file .env.yaml`

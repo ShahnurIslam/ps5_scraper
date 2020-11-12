@@ -12,7 +12,8 @@ export class Email{
     async main(message) {
  
         let transporter = nodemailer.createTransport({
-            host: 'smtp.googlemail.com', // Gmail Host
+            // pool: true,
+            host: 'mail.privateemail.com', // Gmail Host
             port: 465, // Port
             secure: true, // this is true as port is 465
             auth: {
