@@ -1,5 +1,13 @@
 const nodemailer = require("nodemailer");
- 
+const fs = require('fs');
+const YAML = require('yaml');
+
+// We Load in our credentials 
+
+const file = fs.readFileSync('.env.yaml', 'utf8')
+const env = YAML.parse(file)
+process.env.email = env['email'];
+process.env.password = env['password'];
 
 export class Email{
 

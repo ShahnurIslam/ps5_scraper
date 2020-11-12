@@ -30,11 +30,6 @@ export class Bot {
         }
     }
 
-    private async scrape_site2(cr:Crawler){
-        this.logger.info(`Starting Crawler on site ${cr.getRetailerName()}`)
-        this.stock_dict[cr.getRetailerName()] = cr
-    }
-
     check_stock(st_dict){
         var filtered = Object.keys(st_dict).reduce(function (filtered, key) {
             if (st_dict[key] === true) filtered[key] = st_dict[key];
