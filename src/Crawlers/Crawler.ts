@@ -1,11 +1,13 @@
 import {Logger} from "../Logger"
 
-var config = require('../../config.json')
 export abstract class Crawler{
 
     abstract getRetailerName():string;
 
-    abstract getUrl():string;
+    getUrl():string{
+        var urls = require("../../config.json")
+        return urls['url'][this.getRetailerName()]
+    };
 
     abstract productIsValid(stock:string):Boolean;
 

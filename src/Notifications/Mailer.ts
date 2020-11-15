@@ -22,6 +22,7 @@ export class Email{
         this.load_email_details()
         this.email_add = this.env['email']
         this.password = this.env['password']
+        console.log(this.password)
         
     }
 
@@ -66,7 +67,7 @@ export class Email{
      
         // send mail with defined transport object
         let info = await transporter.sendMail({
-            from: process.env.email, // sender address
+            from: this.email_add, // sender address
             to: "shahnurislam@hotmail.co.uk", // list of receivers
             subject: this.Email_Details['Subject'], // Subject line
             //text: "Hello world?", // plain text body

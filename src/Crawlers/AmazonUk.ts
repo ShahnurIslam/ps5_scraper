@@ -1,16 +1,13 @@
 import {Logger} from "../Logger"
+import { Crawler } from "./Crawler";
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-export class AmazonUK{
+export class AmazonUK extends Crawler{
 
     getRetailerName(): string {
         return 'Amazon';
       }
-
-    getUrl():string{
-        return "https://www.amazon.co.uk/dp/B08H95Y452/"
-    }
 
     productIsValid(stock:string):Boolean{
         return stock.startsWith('Available from')

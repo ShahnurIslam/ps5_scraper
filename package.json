@@ -4,8 +4,8 @@
   "description": "To compile code into build tsc",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts",
-    "build": "tsc && cp .env build/"
+    "start": "ts-node run.ts",
+    "build": "tsc"
   },
   "author": "Shan Islam",
   "license": "ISC",

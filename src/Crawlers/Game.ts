@@ -9,9 +9,7 @@ export class Game extends Crawler{
     getRetailerName(): string {
         return "Game"
     }
-    getUrl(): string {
-        return "https://www.game.co.uk/en/playstation-5-console-2826338"
-    }
+
     productIsValid(stock: string): Boolean {
         return !stock.startsWith("Sorry, this product is currently out of stock, but might be available in store")
     }

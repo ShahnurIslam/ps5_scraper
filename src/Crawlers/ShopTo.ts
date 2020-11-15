@@ -8,9 +8,7 @@ export class ShopTo extends Crawler{
     getRetailerName(): string {
         return "ShopTo";
     }
-    getUrl(): string {
-        return "https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/";
-    }
+
     productIsValid(stock:string): Boolean {
         return !stock.startsWith("Sold out")
     }
