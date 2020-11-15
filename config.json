@@ -11,7 +11,7 @@
     },
 
     "Email_Details":{
-        "Recipients": [ "shahnurislam@hotmail.co.uk", "shahnurislam.si@gmail.com"],
+        "Recipients": [ "shahnurislam@hotmail.co.uk"],
         "Subject": "PS5 Stock Notification",
         "Sender": "Shan"
     }
