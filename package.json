@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node run.ts",
-    "build": "tsc"
+    "build": "tsc && cp {.env.yaml,config.json,package.json} build/", 
+    "deploy": "npm run build && cd build && gcloud functions deploy runBot --trigger-topic scrapr --runtime nodejs10 --env-vars-file .env.yaml"
   },
   "author": "Shan Islam",
   "license": "ISC",
