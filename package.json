@@ -4,7 +4,9 @@
   "description": "To compile code into build tsc",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node run.ts",
+    "build": "tsc && cp {.env.yaml,config.json,package.json} build/", 
+    "deploy": "npm run build && cd build && gcloud functions deploy runBot --trigger-topic scrapr --runtime nodejs10 --env-vars-file .env.yaml"
   },
   "author": "Shan Islam",
   "license": "ISC",
@@ -16,6 +18,7 @@
     "@types/axios": "^0.14.0",
     "axios": "^0.20.0",
     "cheerio": "^1.0.0-rc.3",
-    "nodemailer": "^6.4.13"
+    "nodemailer": "^6.4.13",
+    "yaml": "^1.10.0"
   }
 }

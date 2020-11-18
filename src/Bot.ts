@@ -1,4 +1,4 @@
-import {Logger,LogLevel} from "./Logger"
+import {Logger} from "./Logger"
 import { AmazonUK } from "./Crawlers/AmazonUk"
 import { ShopTo } from "./Crawlers/ShopTo"
 import { Game } from "./Crawlers/Game"
@@ -12,7 +12,7 @@ export class Bot {
 
     constructor(private readonly logger: Logger){
         this.stock_dict = {}
-        this.email = new Email
+        this.email = new Email(logger)
         this.msg = ""
     }
 
@@ -28,11 +28,6 @@ export class Bot {
             }
             
         }
-    }
-
-    private async scrape_site2(cr:Crawler){
-        this.logger.info(`Starting Crawler on site ${cr.getRetailerName()}`)
-        this.stock_dict[cr.getRetailerName()] = cr
     }
 
     check_stock(st_dict){

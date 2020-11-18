@@ -3,5 +3,16 @@
         "Amazon": "https://www.amazon.co.uk/dp/B08H95Y452/",
         "ShopTo": "https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/",
         "Game": "https://www.game.co.uk/en/playstation-5-console-2826338"
+    },
+
+    "Outgoing_SMTP": {
+        "host" : "mail.privateemail.com",
+        "port" : 465
+    },
+
+    "Email_Details":{
+        "Recipients": [ "shahnurislam@hotmail.co.uk"],
+        "Subject": "PS5 Stock Notification",
+        "Sender": "Shan"
     }
 }
