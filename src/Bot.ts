@@ -57,7 +57,7 @@ export class Bot {
         this.logger.info("Starting bot scraper")
         await this.scrape_site(new AmazonUK)
         await this.scrape_site(new ShopTo)
-        await this.scrape_site(new Game)
+        // await this.scrape_site(new Game)
         // this.stock_dict['test'] = true
         console.log(this.stock_dict)
         this.email_notification(this.stock_dict)
