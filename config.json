@@ -1,7 +1,13 @@
 {
-    "url":{
+    "disc_url":{
         "Amazon": "https://www.amazon.co.uk/dp/B08H95Y452/",
         "ShopTo": "https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/",
+        "Game": "https://www.game.co.uk/en/playstation-5-console-2826338"
+    },
+
+    "digital_url":{
+        "Amazon": "https://www.amazon.co.uk/dp/B08H97NYGP/",
+        "ShopTo": "https://www.shopto.net/en/ps5hw02-playstation-5-digital-console-p195341/",
         "Game": "https://www.game.co.uk/en/playstation-5-console-2826338"
     },
 

@@ -6,7 +6,7 @@ export abstract class Crawler{
 
     getUrl():string{
         var urls = require("../../config.json")
-        return urls['url'][this.getRetailerName()]
+        return urls['digital_url'][this.getRetailerName()]
     };
 
     abstract productIsValid(stock:string):Boolean;
