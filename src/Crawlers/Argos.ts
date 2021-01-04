@@ -8,7 +8,7 @@ export class Argos extends Crawler {
         return "Argos"
     }
     productIsValid(stock: string): Boolean {
-        return !stock.startsWith("Sorry, PlayStation®5 is currently unavailable.")
+        return !stock.includes("is currently unavailable.")
     }
     async crawlSite(logger:Logger){
         const prod_url  = this.getUrl();

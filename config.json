@@ -1,17 +1,24 @@
 {
     
-    "disc_url":{
+    "ps5_disc_url":{
         "Amazon": "https://www.amazon.co.uk/dp/B08H95Y452/",
         "ShopTo": "https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/",
         "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
         "Argos": "https://www.argos.co.uk/product/8349000"
     },
 
-    "digital_url":{
+    "ps5_digital_url":{
         "Amazon": "https://www.amazon.co.uk/dp/B08H97NYGP/",
         "ShopTo": "https://www.shopto.net/en/ps5hw02-playstation-5-digital-console-p195341/",
         "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
         "Argos": "https://www.argos.co.uk/product/8349024"
+    },
+
+    "xbox_series_x_url":{
+        "Amazon": "https://www.amazon.co.uk/dp/B08H93GKNJ/",
+        "ShopTo": "https://www.shopto.net/en/xbxhw01-xbox-series-x-p191471/",
+        "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
+        "Argos": "https://www.argos.co.uk/product/8448262/"
     },
 
     "Outgoing_SMTP": {
@@ -20,7 +27,8 @@
     },
 
     "Email_Details":{
-        "Recipients": [ "shahnurislam@hotmail.co.uk","hamidahmed88@googlemail.com"],
+        "prod_Recipients": [ "shahnurislam@hotmail.co.uk","hamidahmed88@googlemail.com"],
+        "Recipients": [ "shahnurislam@hotmail.co.uk"],
         "Subject": "PS5 Stock Notification",
         "Sender": "Shan"
     }
