@@ -52,7 +52,7 @@ export class Email{
     }
 
 
-    async main(message) {
+    async main(message, prod: string) {
  
         let transporter = nodemailer.createTransport({
             host: this.host, // Email Host
@@ -68,7 +68,7 @@ export class Email{
         let info = await transporter.sendMail({
             from: this.email_add, // sender address
             to: this.Email_Details['Recipients'].join(";"), // list of receivers
-            subject: this.Email_Details['Subject'], // Subject line
+            subject: prod.toUpperCase().replace('_',' ').concat(' Stock Notfication'), // Subject line
             //text: "Hello world?", // plain text body
             // "<table style='margin-left: auto; margin-right: auto;'> <tbody> <tr> <td style='text-align: center;'>" 
             html: "<p style='font-family:Helvetica;font-size:18px;'> Hey! <br><br> I think I may have found some stock: <br/>" + 

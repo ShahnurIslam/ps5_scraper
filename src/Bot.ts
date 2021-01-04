@@ -18,14 +18,15 @@ export class Bot {
     }
 
     private async scrape_site(cr:Crawler,prod:string, urls:any){
+        const prod_url = urls[cr.getRetailerName()]
         this.logger.info(`Starting Crawler on site ${cr.getRetailerName()}`)
-        this.stock_dict[prod][cr.getRetailerName()] = await cr.getStock(this.logger,urls[cr.getRetailerName()])
+        this.stock_dict[prod][cr.getRetailerName()] = await cr.getStock(this.logger,prod_url)
         // // this.msg += '\n' + cr.getRetailerName() + ' has stock at url: ' + cr.getUrl()
         if (this.stock_dict[prod][cr.getRetailerName()] === true){
             if (this.msg == ""){
-                this.msg = cr.getRetailerName()  + ' has stock <a href="' + cr.getUrl() + '">here</a><br/>'
+                this.msg = cr.getRetailerName()  + ' has stock <a href="' + prod_url + '">here</a><br/>'
             } else {
-                this.msg +=  cr.getRetailerName()  + ' has stock <a href="' + cr.getUrl() + '">here</a><br/>'
+                this.msg +=  cr.getRetailerName()  + ' has stock <a href="' + prod_url + '">here</a><br/>'
             }
             
         }
@@ -40,14 +41,14 @@ export class Bot {
         return len
     }
 
-    email_notification(st_dict){
+    email_notification(st_dict, prod){
         if(this.check_stock(st_dict) > 0){
             var filtered: { [characterName: string]: boolean} = Object.keys(st_dict).reduce(function (filtered, key) {
                 if (st_dict[key] === true) filtered[key] = st_dict[key];
                 return filtered;
             }, {});
 
-            this.email.main(this.msg)
+            this.email.main(this.msg, prod)
 
         } else{
             this.logger.info("No stock anywhere")
@@ -65,12 +66,12 @@ export class Bot {
             await this.scrape_site(new AmazonUK,k,prods[k]['urls'])
             await this.scrape_site(new ShopTo,k,prods[k]['urls'])
             await this.scrape_site(new Argos,k,prods[k]['urls'])
-            this.email_notification(this.stock_dict[k])
+            // this.stock_dict['ps5_digital']['test'] = true
+            this.email_notification(this.stock_dict[k], k)
             // console.log(prods[k]['urls']['Amazon'])
         }
-
-        // this.stock_dict['test'] = true
         console.log(this.stock_dict)
+        // this.stock_dict['test'] = true
         // this.email_notification(this.stock_dict)
     }
 

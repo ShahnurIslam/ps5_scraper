@@ -25,7 +25,8 @@
             }
 
         }
-    },
+    }
+,
 
     "ps5_disc_url":{
         "Amazon": "https://www.amazon.co.uk/dp/B08H95Y452/",
@@ -54,8 +55,8 @@
     },
 
     "Email_Details":{
-        "prod_Recipients": [ "shahnurislam@hotmail.co.uk","hamidahmed88@googlemail.com"],
-        "Recipients": [ "shahnurislam@hotmail.co.uk"],
+        "Recipients": [ "shahnurislam@hotmail.co.uk","hamidahmed88@googlemail.com"],
+        "test_Recipients": [ "shahnurislam@hotmail.co.uk"],
         "Subject": "PS5 Stock Notification",
         "Sender": "Shan"
     }
