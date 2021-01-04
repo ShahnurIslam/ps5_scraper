@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node run.ts",
     "build": "tsc && cp {.env.yaml,config.json,package.json} build/", 
+    "main_bot": "npm run build && cd build && gcloud functions deploy runBot --trigger-topic scrapr --runtime nodejs10 --env-vars-file .env.yaml",
     "deploy_disc": "npm run build && cd build && gcloud functions deploy runDiscBot --trigger-topic scrapr --runtime nodejs10 --env-vars-file .env.yaml",
     "deploy_digital": "npm run build && cd build && gcloud functions deploy runDigitalBot --trigger-topic scrapr --runtime nodejs10 --env-vars-file .env.yaml"
   },

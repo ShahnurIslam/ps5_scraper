@@ -10,11 +10,11 @@ export class AmazonUK extends Crawler{
       }
 
     productIsValid(stock:string):Boolean{
-        return stock.startsWith('Available from')
+        return !stock.startsWith('Currently unavailable')
       }
     
     async crawlSite(logger:Logger){
-        const prod_url  = this.getUrl();
+        const prod_url  = this.url;
         let stock_list = '';
         try {
             const response = await axios.get(prod_url, {headers:{'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0'}})
@@ -30,7 +30,13 @@ export class AmazonUK extends Crawler{
         return stock_list
     }
 
-    public async getStock(logger:Logger){
+    // public async getStock(logger:Logger){
+    //     const stock = await this.crawlSite(logger)
+    //     const in_stock = this.productIsValid(stock)
+    //     return in_stock
+    // }
+    public async getStock(logger:Logger,url:string){
+        this.url = url
         const stock = await this.crawlSite(logger)
         const in_stock = this.productIsValid(stock)
         return in_stock

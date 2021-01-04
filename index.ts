@@ -5,6 +5,8 @@ export function bot(){
     new Bot(new Logger(LogLevel.Info)).start()
 };
 
-exports.runDiscBot = bot;
-exports.runDigitalBot = bot;
+exports.runBot = bot;
+
+// exports.runDiscBot = bot;
+// exports.runDigitalBot = bot;
 
