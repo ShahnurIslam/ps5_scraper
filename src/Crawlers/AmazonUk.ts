@@ -30,11 +30,6 @@ export class AmazonUK extends Crawler{
         return stock_list
     }
 
-    // public async getStock(logger:Logger){
-    //     const stock = await this.crawlSite(logger)
-    //     const in_stock = this.productIsValid(stock)
-    //     return in_stock
-    // }
     public async getStock(logger:Logger,url:string){
         this.url = url
         const stock = await this.crawlSite(logger)
