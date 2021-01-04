@@ -17,11 +17,11 @@ export class Bot {
         this.msg = ""
     }
 
-    private async scrape_site(cr:Crawler){
+    private async scrape_site(cr:Crawler,prod:string, urls:any){
         this.logger.info(`Starting Crawler on site ${cr.getRetailerName()}`)
-        this.stock_dict[cr.getRetailerName()] = await cr.getStock(this.logger)
-        // this.msg += '\n' + cr.getRetailerName() + ' has stock at url: ' + cr.getUrl()
-        if (this.stock_dict[cr.getRetailerName()] === true){
+        this.stock_dict[prod][cr.getRetailerName()] = await cr.getStock(this.logger,urls[cr.getRetailerName()])
+        // // this.msg += '\n' + cr.getRetailerName() + ' has stock at url: ' + cr.getUrl()
+        if (this.stock_dict[prod][cr.getRetailerName()] === true){
             if (this.msg == ""){
                 this.msg = cr.getRetailerName()  + ' has stock <a href="' + cr.getUrl() + '">here</a><br/>'
             } else {
@@ -56,14 +56,22 @@ export class Bot {
 
     public async start(){
         this.logger.info("Starting bot scraper")
-        await this.scrape_site(new AmazonUK)
-        await this.scrape_site(new ShopTo)
-        // await this.scrape_site(new Game)
-        await this.scrape_site(new Argos)
+        var prods = require("../config.json")['product']
+        for (let k in prods) {
+            this.stock_dict[k] = {}
+        }
+        for(let k in prods) {
+            this.logger.info("Scraping for product: ".concat(k))
+            await this.scrape_site(new AmazonUK,k,prods[k]['urls'])
+            await this.scrape_site(new ShopTo,k,prods[k]['urls'])
+            await this.scrape_site(new Argos,k,prods[k]['urls'])
+            this.email_notification(this.stock_dict[k])
+            // console.log(prods[k]['urls']['Amazon'])
+        }
 
         // this.stock_dict['test'] = true
         console.log(this.stock_dict)
-        this.email_notification(this.stock_dict)
+        // this.email_notification(this.stock_dict)
     }
 
 }

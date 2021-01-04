@@ -1,5 +1,32 @@
 {
-    
+    "product":{
+        "ps5_disc":{
+            "urls":{
+                "Amazon": "https://www.amazon.co.uk/dp/B08H95Y452/",
+                "ShopTo": "https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/",
+                "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
+                "Argos": "https://www.argos.co.uk/product/8349000"
+            }
+        },
+        "ps5_digital" :{
+            "urls":{
+                "Amazon": "https://www.amazon.co.uk/dp/B08H97NYGP/",
+                "ShopTo": "https://www.shopto.net/en/ps5hw02-playstation-5-digital-console-p195341/",
+                "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
+                "Argos": "https://www.argos.co.uk/product/8349024"
+            }
+        },
+        "xbox_series_x":{
+            "urls":{
+                "Amazon": "https://www.amazon.co.uk/dp/B08H93GKNJ/",
+                "ShopTo": "https://www.shopto.net/en/xbxhw01-xbox-series-x-p191471/",
+                "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
+                "Argos": "https://www.argos.co.uk/product/8448262/"
+            }
+
+        }
+    },
+
     "ps5_disc_url":{
         "Amazon": "https://www.amazon.co.uk/dp/B08H95Y452/",
         "ShopTo": "https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/",

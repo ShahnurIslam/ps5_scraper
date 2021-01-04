@@ -1,6 +1,7 @@
 import {Logger} from "../Logger"
 
 export abstract class Crawler{
+    url:string
 
     abstract getRetailerName():string;
 
@@ -13,6 +14,6 @@ export abstract class Crawler{
 
     abstract crawlSite(logger:Logger);
 
-    abstract getStock(logger:Logger);
+    abstract getStock(logger:Logger,url:string);
     
 }
