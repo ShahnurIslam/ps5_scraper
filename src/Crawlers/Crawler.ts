@@ -11,8 +11,8 @@ export abstract class Crawler{
 
     abstract productIsValid(stock:string):Boolean;
 
-    abstract async crawlSite(logger:Logger);
+    abstract crawlSite(logger:Logger);
 
-    abstract async getStock(logger:Logger);
+    abstract getStock(logger:Logger);
     
 }

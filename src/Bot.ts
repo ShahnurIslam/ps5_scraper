@@ -2,6 +2,7 @@ import {Logger} from "./Logger"
 import { AmazonUK } from "./Crawlers/AmazonUk"
 import { ShopTo } from "./Crawlers/ShopTo"
 import { Game } from "./Crawlers/Game"
+import { Argos } from "./Crawlers/Argos"
 import { Crawler } from './Crawlers/Crawler'
 import { Email } from './Notifications/Mailer'
 
@@ -58,6 +59,8 @@ export class Bot {
         await this.scrape_site(new AmazonUK)
         await this.scrape_site(new ShopTo)
         // await this.scrape_site(new Game)
+        await this.scrape_site(new Argos)
+
         // this.stock_dict['test'] = true
         console.log(this.stock_dict)
         this.email_notification(this.stock_dict)
