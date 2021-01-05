@@ -4,6 +4,7 @@ import { ShopTo } from "./Crawlers/ShopTo"
 import { Game } from "./Crawlers/Game"
 import { Argos } from "./Crawlers/Argos"
 import { Crawler } from './Crawlers/Crawler'
+import { Smyths } from './Crawlers/Smyths'
 import { Email } from './Notifications/Mailer'
 
 export class Bot {
@@ -66,6 +67,7 @@ export class Bot {
             await this.scrape_site(new AmazonUK,k,prods[k]['urls'])
             await this.scrape_site(new ShopTo,k,prods[k]['urls'])
             await this.scrape_site(new Argos,k,prods[k]['urls'])
+            await this.scrape_site(new Smyths,k,prods[k]['urls'])
             // this.stock_dict['ps5_digital']['test'] = true
             this.email_notification(this.stock_dict[k], k)
             // console.log(prods[k]['urls']['Amazon'])

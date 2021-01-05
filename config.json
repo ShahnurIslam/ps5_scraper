@@ -5,7 +5,8 @@
                 "Amazon": "https://www.amazon.co.uk/dp/B08H95Y452/",
                 "ShopTo": "https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/",
                 "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
-                "Argos": "https://www.argos.co.uk/product/8349000"
+                "Argos": "https://www.argos.co.uk/product/8349000",
+                "Smyths": "https://www.smythstoys.com/uk/en-gb/video-games-and-tablets/playstation-5/playstation-5-consoles/playstation-5-console/p/191259"
             }
         },
         "ps5_digital" :{
@@ -13,7 +14,8 @@
                 "Amazon": "https://www.amazon.co.uk/dp/B08H97NYGP/",
                 "ShopTo": "https://www.shopto.net/en/ps5hw02-playstation-5-digital-console-p195341/",
                 "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
-                "Argos": "https://www.argos.co.uk/product/8349024"
+                "Argos": "https://www.argos.co.uk/product/8349024",
+                "Smyths": "https://www.smythstoys.com/uk/en-gb/video-games-and-tablets/playstation-5/playstation-5-consoles/playstation-5-digital-edition-console/p/191430"
             }
         },
         "xbox_series_x":{
@@ -21,32 +23,11 @@
                 "Amazon": "https://www.amazon.co.uk/dp/B08H93GKNJ/",
                 "ShopTo": "https://www.shopto.net/en/xbxhw01-xbox-series-x-p191471/",
                 "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
-                "Argos": "https://www.argos.co.uk/product/8448262/"
+                "Argos": "https://www.argos.co.uk/product/8448262/",
+                "Smyths": "https://www.smythstoys.com/uk/en-gb/video-games-and-tablets/xbox-gaming/xbox-series-x-%7c-s/xbox-series-x-%7c-s-consoles/xbox-series-x-1tb-console/p/192012"
             }
 
         }
-    }
-,
-
-    "ps5_disc_url":{
-        "Amazon": "https://www.amazon.co.uk/dp/B08H95Y452/",
-        "ShopTo": "https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/",
-        "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
-        "Argos": "https://www.argos.co.uk/product/8349000"
-    },
-
-    "ps5_digital_url":{
-        "Amazon": "https://www.amazon.co.uk/dp/B08H97NYGP/",
-        "ShopTo": "https://www.shopto.net/en/ps5hw02-playstation-5-digital-console-p195341/",
-        "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
-        "Argos": "https://www.argos.co.uk/product/8349024"
-    },
-
-    "xbox_series_x_url":{
-        "Amazon": "https://www.amazon.co.uk/dp/B08H93GKNJ/",
-        "ShopTo": "https://www.shopto.net/en/xbxhw01-xbox-series-x-p191471/",
-        "Game": "https://www.game.co.uk/en/playstation-5-console-2826338",
-        "Argos": "https://www.argos.co.uk/product/8448262/"
     },
 
     "Outgoing_SMTP": {
